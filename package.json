@@ -1,6 +1,6 @@
 {
-  "name": "react-flip-countdown",
-  "version": "1.0.0",
+  "name": "rc-countdown-flip",
+  "version": "0.1.0",
   "description": "filp countdown for react",
   "main": "lib/index.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "publish-demo": "npm run build && npm run deploy"
   },
   "keywords": [
+    "rc-countdown-flip",
     "react-filp-countdown",
     "react-count-down",
     "react-countdown",
@@ -18,7 +19,7 @@
     "count-down"
   ],
   "author": "kuckboy1994",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
