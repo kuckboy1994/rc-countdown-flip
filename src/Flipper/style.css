@@ -1,0 +1,154 @@
+.card {
+  position: relative;
+  width: 0.7em;
+  height: 1em;
+  color: white;
+  line-height: 1em;
+  text-align: center;
+  font-family: monospace;
+  transform-style: preserve-3d;
+  perspective: 6em;
+  margin-right: 0.03em;
+  box-sizing: border-box;
+}
+
+.after {
+  right: -0.03em;
+  border-radius: 0 0.02em 0.02em 0;
+  width: 0.03em;
+  height: 0.14em;
+  background: black;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.07em;
+}
+
+.before {
+  left: -0.03em;
+  border-radius: 0.02em 0 0 0.02em;
+  width: 0.03em;
+  height: 0.14em;
+  background: black;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.07em;
+}
+
+.b-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  width: 100%;
+  height: 0.5em;
+  overflow: hidden;
+  z-index: 1;
+  transform: translateZ(-0.0001em);
+  border-radius: 0.06em 0.06em 0 0;
+  border: 0.01em solid black;
+  box-sizing: border-box;
+}
+
+.top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.b-2 {
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  background: black;
+  width: 100%;
+  height: 0.5em;
+  overflow: hidden;
+  z-index: 1;
+  transform: translateZ(-0.0001em);
+  border-radius: 0 0 0.06em 0.06em;
+  border: 0.01em solid black;
+  box-sizing: border-box;
+}
+
+.bottom {
+  position: absolute;
+  top: -0.5em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.f {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.5em;
+  transform-origin: bottom;
+  z-index: 10;
+  transform-style: preserve-3d;
+}
+
+.a-1 {
+  position: absolute;
+  top: 0.51em;
+  left: 0;
+  background: black;
+  width: 100%;
+  height: 0.5em;
+  overflow: hidden;
+  transform-origin: top;
+  transform: rotateX(180deg);
+  border-radius: 0 0 0.06em 0.06em;
+  border: 0.01em solid black;
+  box-sizing: border-box;
+}
+
+.hou {
+  position: absolute;
+  top: -0.5em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.a-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  width: 100%;
+  height: 0.5em;
+  overflow: hidden;
+  transform-origin: top;
+  transform: translateZ(0.00001em);
+  border-radius: 0.06em 0.06em 0 0;
+  border: 0.01em solid black;
+  box-sizing: border-box;
+}
+
+.qian {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.flip {
+  transition: all ease 0.5s;
+  transform: rotateX(-180deg);
+}
+
+.separator {
+  position: relative;
+  height: 1em;
+  color: black;
+  font-size: 0.6em;
+  line-height: 1em;
+  text-align: center;
+  font-family: monospace;
+  vertical-align: baseline;
+}

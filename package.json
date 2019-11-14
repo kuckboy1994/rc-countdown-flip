@@ -1,0 +1,38 @@
+{
+  "name": "react-flip-countdown",
+  "version": "1.0.0",
+  "description": "filp countdown for react",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open development",
+    "build": "webpack --mode production",
+    "compile": "npx babel src --out-dir lib",
+    "deploy": "gh-pages -d example/dist",
+    "publish-demo": "npm run build && npm run deploy"
+  },
+  "keywords": [
+    "react-filp-countdown",
+    "react-count-down",
+    "react-countdown",
+    "flip-countDwon",
+    "count-down"
+  ],
+  "author": "kuckboy1994",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "babel-loader": "^8.0.6",
+    "classnames": "^2.2.6",
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
