@@ -1,17 +1,17 @@
 <h1 align="center">
-react-flip-countdown
+rc-countdown-flip
 </h1>
 
 ## Install
 
 ```bash
-yarn add react-flip-countdown
+yarn add rc-countdown-flip
 ```
 
 ## Basic Usage
 
 ```jsx
-import FlipCountDown from "react-flip-countdown";
+import FlipCountDown from "rc-countdown-flip";
 
 <FlipCountDown
   option={{
