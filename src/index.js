@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Flipper from './Flipper';
 import styles from './style.module.sass';
 
@@ -54,20 +54,29 @@ const getTimeText = (format, leftTime) => {
 export default function({
   option: { leftSecond = 0, format = 'dd:hh:mm:ss', end = () => {}, style = {}, standard },
 }) {
+  const prevLeftSecond = useRef(leftSecond);
   const [{ times, leftTime }, setLeftTime] = useState(getTimeText(format, leftSecond));
 
   useEffect(() => {
     let id;
-    if (leftTime > 0) {
+    let fn = () => {};
+    if (prevLeftSecond.current !== leftSecond) {
+      prevLeftSecond.current = leftSecond;
+      setLeftTime(() => getTimeText(format, leftSecond));
+    } else if (leftTime > 0) {
       id = setInterval(() => {
         setLeftTime(prevData => getTimeText(format, prevData.leftTime - 1));
       }, 1000);
+      fn = () => clearInterval(id);
     } else {
-      end();
+      id = setTimeout(() => {
+        end();
+      }, 1000);
+      fn = () => clearTimeout(id);
     }
 
-    return () => clearInterval(id);
-  }, [leftTime, end, format]);
+    return fn;
+  }, [leftTime, end, format, prevLeftSecond, leftSecond]);
 
   return (
     <div className={styles['count-down']} style={{ fontSize: standard }}>

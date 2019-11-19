@@ -1,21 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import { render } from "react-dom";
+import styles from "./style.css";
 import FlipCountDown from "../../src/";
 
-const App = () => (
-  <FlipCountDown
-    option={{
-      leftSecond: 100,
-      format: "dd:hh:mm:ss",
-      end: () => {
-        alert("end");
-      },
-      // style: {
-      //   // color: "black",
-      //   // background: "red"
-      // },
-      standard: "50px"
-    }}
-  />
-);
+const App = () => {
+  const [end, setEnd] = useState(false);
+  const [leftSecond, setLeftSecond] = useState(5);
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.item}>
+        <h2>normal</h2>
+        <FlipCountDown
+          option={{
+            leftSecond: 86405,
+            format: "dd:hh:mm:ss"
+          }}
+        />
+      </div>
+
+      <div className={styles.item}>
+        <h2>callback</h2>
+        <FlipCountDown
+          option={{
+            leftSecond,
+            format: "dd:hh:mm:ss",
+            end: () => {
+              console.log("true");
+              setEnd(true);
+            }
+          }}
+        />
+        <p>结束了吗？ {end ? "是" : "否"} </p>
+        <button
+          onClick={() => {
+            console.log(11);
+            setLeftSecond(a => a + 1);
+            setEnd(false);
+          }}
+        >
+          +1 重置
+        </button>
+      </div>
+
+      <div className={styles.item}>
+        <h2>style</h2>
+        <FlipCountDown
+          option={{
+            leftSecond: 86405,
+            format: "dd:hh:mm:ss",
+            style: {
+              color: "#47858b",
+              background: "#e4f4f3"
+            },
+            standard: "80px"
+          }}
+        />
+      </div>
+
+      <div className={styles.item}>
+        <h2>format ： dd天hh时mm分ss秒</h2>
+        <FlipCountDown
+          option={{
+            leftSecond: 86405,
+            format: "dd天hh时mm分ss秒"
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
 render(<App />, document.getElementById("root"));
