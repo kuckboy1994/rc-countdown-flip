@@ -9,12 +9,12 @@ const App = () => (
       format: "dd:hh:mm:ss",
       end: () => {
         alert("end");
-      }
+      },
       // style: {
-      //   color: "black",
-      //   background: "white"
+      //   // color: "black",
+      //   // background: "red"
       // },
-      // standard: "6.9333vw"
+      standard: "50px"
     }}
   />
 );

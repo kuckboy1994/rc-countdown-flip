@@ -1,14 +1,13 @@
 {
   "name": "rc-countdown-flip",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "filp countdown for react",
-  "main": "lib/index.js",
+  "homepage": "https://github.com/kuckboy1994/rc-countdown-flip",
+  "main": "es/index.js",
   "scripts": {
     "start": "webpack-dev-server --open development",
     "build": "webpack --mode production",
-    "compile": "npx babel src --out-dir lib",
-    "deploy": "gh-pages -d example/dist",
-    "publish-demo": "npm run build && npm run deploy"
+    "compile": "npx father build"
   },
   "keywords": [
     "rc-countdown-flip",
@@ -16,7 +15,8 @@
     "react-count-down",
     "react-countdown",
     "flip-countDwon",
-    "count-down"
+    "count-down",
+    "component"
   ],
   "author": "kuckboy1994",
   "license": "MIT",
@@ -26,14 +26,19 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
     "babel-loader": "^8.0.6",
-    "classnames": "^2.2.6",
     "css-loader": "^3.2.0",
+    "father": "^2.25.0",
     "html-webpack-plugin": "^3.2.0",
-    "react": "^16.11.0",
+    "node-sass": "^4.13.0",
     "react-dom": "^16.11.0",
+    "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "react": "^16.11.0",
+    "classnames": "^2.2.6"
   }
 }

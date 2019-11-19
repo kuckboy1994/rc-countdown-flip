@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
-var _style = _interopRequireDefault(require("./style.css"));
+var _styleModule = _interopRequireDefault(require("./style.module.sass"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -30,6 +30,8 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _default(props) {
+  var _cn;
+
   var now = props.now,
       style = props.style;
   var prevNowRef = (0, _react.useRef)();
@@ -57,10 +59,10 @@ function _default(props) {
   (0, _react.useEffect)(function () {
     var id;
 
-    if (typeof now === "string") {
+    if (typeof now === 'string') {
       setSeparator(true);
       setOldVal(now);
-    } else if (typeof prevNowRef.current === "undefined") {
+    } else if (typeof prevNowRef.current === 'undefined') {
       setOldVal(now);
     } else if (now !== prevNowRef.current) {
       setOldVal(prevNowRef.current);
@@ -79,63 +81,62 @@ function _default(props) {
   }, [now]);
 
   if (separator) {
-    var sc = {};
-
-    if (style && style.color) {
-      sc.color = style.background;
-    }
-
-    return _react["default"].createElement("div", {
-      className: _style["default"].separator,
-      style: sc
-    }, oldVal);
-  } else {
-    var _cn;
-
-    var sb = {};
-
-    if (style && style.background) {
-      sb.border = ".01em solid ".concat(style.background);
-      sb.background = style.background;
-    }
-
     var _sc = {};
 
-    if (style && style.color) {
-      _sc.color = style.color;
+    if (style && style.background) {
+      _sc.color = style.background;
     }
 
     return _react["default"].createElement("div", {
-      className: _style["default"].card,
+      className: _styleModule["default"].separator,
       style: _sc
-    }, _react["default"].createElement("div", {
-      className: _style["default"]["b-1"],
-      style: sb
-    }, _react["default"].createElement("div", {
-      className: _style["default"]["top"]
-    }, newVal)), _react["default"].createElement("div", {
-      className: _style["default"]["b-2"],
-      style: sb
-    }, _react["default"].createElement("div", {
-      className: _style["default"]["bottom"]
-    }, oldVal)), _react["default"].createElement("div", {
-      className: (0, _classnames["default"])((_cn = {}, _defineProperty(_cn, _style["default"]["f"], true), _defineProperty(_cn, _style["default"]["flip"], flip), _cn))
-    }, _react["default"].createElement("div", {
-      className: _style["default"]["a-1"],
-      style: sb
-    }, _react["default"].createElement("div", {
-      className: _style["default"]["hou"]
-    }, newVal)), _react["default"].createElement("div", {
-      className: _style["default"]["a-2"],
-      style: sb
-    }, _react["default"].createElement("div", {
-      className: _style["default"]["qian"]
-    }, oldVal))), _react["default"].createElement("div", {
-      className: _style["default"].before,
-      style: sb
-    }), _react["default"].createElement("div", {
-      className: _style["default"].after,
-      style: sb
-    }));
+    }, oldVal);
   }
+
+  var ba = {
+    border: ".01em solid ".concat(style.background)
+  };
+
+  if (style && style.background) {
+    ba.background = style.background;
+  }
+
+  var sc = {};
+
+  if (style && style.color) {
+    sc.color = style.color;
+  }
+
+  return _react["default"].createElement("div", {
+    className: _styleModule["default"].card,
+    style: sc
+  }, _react["default"].createElement("div", {
+    className: _styleModule["default"]['b-1'],
+    style: ba
+  }, _react["default"].createElement("div", {
+    className: _styleModule["default"].top
+  }, newVal)), _react["default"].createElement("div", {
+    className: _styleModule["default"]['b-2'],
+    style: ba
+  }, _react["default"].createElement("div", {
+    className: _styleModule["default"].bottom
+  }, oldVal)), _react["default"].createElement("div", {
+    className: (0, _classnames["default"])((_cn = {}, _defineProperty(_cn, _styleModule["default"].f, true), _defineProperty(_cn, _styleModule["default"].flip, flip), _cn))
+  }, _react["default"].createElement("div", {
+    className: _styleModule["default"]['a-1'],
+    style: ba
+  }, _react["default"].createElement("div", {
+    className: _styleModule["default"].hou
+  }, newVal)), _react["default"].createElement("div", {
+    className: _styleModule["default"]['a-2'],
+    style: ba
+  }, _react["default"].createElement("div", {
+    className: _styleModule["default"].qian
+  }, oldVal))), _react["default"].createElement("div", {
+    className: _styleModule["default"].before,
+    style: ba
+  }), _react["default"].createElement("div", {
+    className: _styleModule["default"].after,
+    style: ba
+  }));
 }

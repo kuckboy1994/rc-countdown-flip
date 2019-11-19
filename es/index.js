@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Flipper = _interopRequireDefault(require("./Flipper"));
 
-var _style = _interopRequireDefault(require("./style.css"));
+var _styleModule = _interopRequireDefault(require("./style.module.sass"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -27,19 +27,17 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var getTimeText = function getTimeText() {
-  var format = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "hh:mm:ss";
-  var leftTime = arguments.length > 1 ? arguments[1] : undefined;
+var getTimeText = function getTimeText(format, leftTime) {
   var day = Math.floor(leftTime / (24 * 60 * 60));
   var hor = Math.floor(leftTime % (24 * 60 * 60) / (60 * 60));
   var min = Math.floor(leftTime % (60 * 60) / 60);
   var sec = leftTime % 60;
   var times = [];
 
-  for (var i = format.length - 1; i >= 0; i--) {
+  for (var i = format.length - 1; i >= 0; i -= 1) {
     switch (format[i].toLowerCase()) {
-      case "d":
-        if ((format[i + 1] || "").toLowerCase() === "d") {
+      case 'd':
+        if ((format[i + 1] || '').toLowerCase() === 'd') {
           times.unshift(Math.floor(day / 10));
         } else {
           times.unshift(day % 10);
@@ -47,8 +45,8 @@ var getTimeText = function getTimeText() {
 
         break;
 
-      case "h":
-        if ((format[i + 1] || "").toLowerCase() === "h") {
+      case 'h':
+        if ((format[i + 1] || '').toLowerCase() === 'h') {
           times.unshift(Math.floor(hor / 10));
         } else {
           times.unshift(hor % 10);
@@ -56,8 +54,8 @@ var getTimeText = function getTimeText() {
 
         break;
 
-      case "m":
-        if ((format[i + 1] || "").toLowerCase() === "m") {
+      case 'm':
+        if ((format[i + 1] || '').toLowerCase() === 'm') {
           times.unshift(Math.floor(min / 10));
         } else {
           times.unshift(min % 10);
@@ -65,8 +63,8 @@ var getTimeText = function getTimeText() {
 
         break;
 
-      case "s":
-        if ((format[i + 1] || "").toLowerCase() === "s") {
+      case 's':
+        if ((format[i + 1] || '').toLowerCase() === 's') {
           times.unshift(Math.floor(sec / 10));
         } else {
           times.unshift(sec % 10);
@@ -90,7 +88,8 @@ function _default(_ref) {
       leftSecond = _ref$option.leftSecond,
       format = _ref$option.format,
       end = _ref$option.end,
-      style = _ref$option.style,
+      _ref$option$style = _ref$option.style,
+      style = _ref$option$style === void 0 ? {} : _ref$option$style,
       standard = _ref$option.standard;
 
   var _useState = (0, _react.useState)(getTimeText(format, leftSecond)),
@@ -110,25 +109,20 @@ function _default(_ref) {
         });
       }, 1000);
     } else {
-      end && end();
+      end();
     }
 
     return function () {
       return clearInterval(id);
     };
   }, [leftTime, end, format]);
-  var sf = {};
-
-  if (standard) {
-    sf.fontSize = standard;
-  }
-
   return _react["default"].createElement("div", {
-    className: _style["default"]["count-down"],
-    style: sf
-  }, times.map(function (item, index) {
+    className: _styleModule["default"]['count-down'],
+    style: {
+      fontSize: standard
+    }
+  }, times.map(function (item) {
     return _react["default"].createElement(_Flipper["default"], {
-      key: index,
       now: item,
       style: style
     });
