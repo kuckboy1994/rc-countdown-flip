@@ -1,6 +1,6 @@
 {
   "name": "rc-countdown-flip",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "filp countdown for react",
   "homepage": "https://github.com/kuckboy1994/rc-countdown-flip",
   "main": "es/index.js",

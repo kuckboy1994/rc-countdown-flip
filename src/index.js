@@ -14,34 +14,34 @@ const getTimeText = (format, leftTime) => {
     switch (format[i].toLowerCase()) {
       case 'd':
         if ((format[i + 1] || '').toLowerCase() === 'd') {
-          times.unshift(Math.floor(day / 10));
+          times.unshift({ index: i, data: Math.floor(day / 10) });
         } else {
-          times.unshift(day % 10);
+          times.unshift({ index: i, data: day % 10 });
         }
         break;
       case 'h':
         if ((format[i + 1] || '').toLowerCase() === 'h') {
-          times.unshift(Math.floor(hor / 10));
+          times.unshift({ index: i, data: Math.floor(hor / 10) });
         } else {
-          times.unshift(hor % 10);
+          times.unshift({ index: i, data: hor % 10 });
         }
         break;
       case 'm':
         if ((format[i + 1] || '').toLowerCase() === 'm') {
-          times.unshift(Math.floor(min / 10));
+          times.unshift({ index: i, data: Math.floor(min / 10) });
         } else {
-          times.unshift(min % 10);
+          times.unshift({ index: i, data: min % 10 });
         }
         break;
       case 's':
         if ((format[i + 1] || '').toLowerCase() === 's') {
-          times.unshift(Math.floor(sec / 10));
+          times.unshift({ index: i, data: Math.floor(sec / 10) });
         } else {
-          times.unshift(sec % 10);
+          times.unshift({ index: i, data: sec % 10 });
         }
         break;
       default:
-        times.unshift(format[i]);
+        times.unshift({ index: i, data: format[i] });
     }
   }
 
@@ -51,7 +51,9 @@ const getTimeText = (format, leftTime) => {
   };
 };
 
-export default function({ option: { leftSecond, format, end, style = {}, standard } }) {
+export default function({
+  option: { leftSecond = 0, format = 'dd:hh:mm:ss', end = () => {}, style = {}, standard },
+}) {
   const [{ times, leftTime }, setLeftTime] = useState(getTimeText(format, leftSecond));
 
   useEffect(() => {
@@ -70,7 +72,7 @@ export default function({ option: { leftSecond, format, end, style = {}, standar
   return (
     <div className={styles['count-down']} style={{ fontSize: standard }}>
       {times.map(item => (
-        <Flipper now={item} style={style} />
+        <Flipper now={item.data} index={item.index} style={style} />
       ))}
     </div>
   );

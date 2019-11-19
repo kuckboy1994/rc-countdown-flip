@@ -36,44 +36,71 @@ var getTimeText = function getTimeText(format, leftTime) {
 
   for (var i = format.length - 1; i >= 0; i -= 1) {
     switch (format[i].toLowerCase()) {
-      case 'd':
-        if ((format[i + 1] || '').toLowerCase() === 'd') {
-          times.unshift(Math.floor(day / 10));
+      case "d":
+        if ((format[i + 1] || "").toLowerCase() === "d") {
+          times.unshift({
+            index: i,
+            data: Math.floor(day / 10)
+          });
         } else {
-          times.unshift(day % 10);
+          times.unshift({
+            index: i,
+            data: day % 10
+          });
         }
 
         break;
 
-      case 'h':
-        if ((format[i + 1] || '').toLowerCase() === 'h') {
-          times.unshift(Math.floor(hor / 10));
+      case "h":
+        if ((format[i + 1] || "").toLowerCase() === "h") {
+          times.unshift({
+            index: i,
+            data: Math.floor(hor / 10)
+          });
         } else {
-          times.unshift(hor % 10);
+          times.unshift({
+            index: i,
+            data: hor % 10
+          });
         }
 
         break;
 
-      case 'm':
-        if ((format[i + 1] || '').toLowerCase() === 'm') {
-          times.unshift(Math.floor(min / 10));
+      case "m":
+        if ((format[i + 1] || "").toLowerCase() === "m") {
+          times.unshift({
+            index: i,
+            data: Math.floor(min / 10)
+          });
         } else {
-          times.unshift(min % 10);
+          times.unshift({
+            index: i,
+            data: min % 10
+          });
         }
 
         break;
 
-      case 's':
-        if ((format[i + 1] || '').toLowerCase() === 's') {
-          times.unshift(Math.floor(sec / 10));
+      case "s":
+        if ((format[i + 1] || "").toLowerCase() === "s") {
+          times.unshift({
+            index: i,
+            data: Math.floor(sec / 10)
+          });
         } else {
-          times.unshift(sec % 10);
+          times.unshift({
+            index: i,
+            data: sec % 10
+          });
         }
 
         break;
 
       default:
-        times.unshift(format[i]);
+        times.unshift({
+          index: i,
+          data: format[i]
+        });
     }
   }
 
@@ -85,9 +112,12 @@ var getTimeText = function getTimeText(format, leftTime) {
 
 function _default(_ref) {
   var _ref$option = _ref.option,
-      leftSecond = _ref$option.leftSecond,
-      format = _ref$option.format,
-      end = _ref$option.end,
+      _ref$option$leftSecon = _ref$option.leftSecond,
+      leftSecond = _ref$option$leftSecon === void 0 ? 0 : _ref$option$leftSecon,
+      _ref$option$format = _ref$option.format,
+      format = _ref$option$format === void 0 ? "dd:hh:mm:ss" : _ref$option$format,
+      _ref$option$end = _ref$option.end,
+      end = _ref$option$end === void 0 ? function () {} : _ref$option$end,
       _ref$option$style = _ref$option.style,
       style = _ref$option$style === void 0 ? {} : _ref$option$style,
       standard = _ref$option.standard;
@@ -117,13 +147,14 @@ function _default(_ref) {
     };
   }, [leftTime, end, format]);
   return _react["default"].createElement("div", {
-    className: _styleModule["default"]['count-down'],
+    className: _styleModule["default"]["count-down"],
     style: {
       fontSize: standard
     }
   }, times.map(function (item) {
     return _react["default"].createElement(_Flipper["default"], {
-      now: item,
+      now: item.data,
+      index: item.index,
       style: style
     });
   }));
