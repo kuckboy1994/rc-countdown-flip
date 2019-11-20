@@ -15,39 +15,40 @@ const getTimeText = (format, leftTime) => {
   const sec = leftTime % s;
 
   const times = [];
+  const fm = format.toLowerCase();
 
-  for (let i = format.length - 1; i >= 0; i -= 1) {
-    switch (format[i].toLowerCase()) {
+  for (let i = fm.length - 1; i >= 0; i -= 1) {
+    switch (fm[i]) {
       case 'd':
-        if ((format[i + 1] || '').toLowerCase() === 'd') {
+        if (fm[i + 1] === 'd') {
           times.unshift({ index: i, data: Math.floor(day / 10) });
         } else {
           times.unshift({ index: i, data: day % 10 });
         }
         break;
       case 'h':
-        if ((format[i + 1] || '').toLowerCase() === 'h') {
+        if (fm[i + 1] === 'h') {
           times.unshift({ index: i, data: Math.floor(hor / 10) });
         } else {
           times.unshift({ index: i, data: hor % 10 });
         }
         break;
       case 'm':
-        if ((format[i + 1] || '').toLowerCase() === 'm') {
+        if (fm[i + 1] === 'm') {
           times.unshift({ index: i, data: Math.floor(min / 10) });
         } else {
           times.unshift({ index: i, data: min % 10 });
         }
         break;
       case 's':
-        if ((format[i + 1] || '').toLowerCase() === 's') {
+        if (fm[i + 1] === 's') {
           times.unshift({ index: i, data: Math.floor(sec / 10) });
         } else {
           times.unshift({ index: i, data: sec % 10 });
         }
         break;
       default:
-        times.unshift({ index: i, data: format[i] });
+        times.unshift({ index: i, data: fm[i] });
     }
   }
 
