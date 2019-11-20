@@ -3,10 +3,16 @@ import Flipper from './Flipper';
 import styles from './style.module.sass';
 
 const getTimeText = (format, leftTime) => {
-  const day = Math.floor(leftTime / (24 * 60 * 60));
-  const hor = Math.floor((leftTime % (24 * 60 * 60)) / (60 * 60));
-  const min = Math.floor((leftTime % (60 * 60)) / 60);
-  const sec = leftTime % 60;
+  // console.log(format);
+  const d = 100;
+  const h = /H/.test(format) ? 100 : 24;
+  const m = /M/.test(format) ? 100 : 60;
+  const s = /S/.test(format) ? 100 : 60;
+
+  const day = Math.floor((leftTime % (d * h * m * s)) / (h * m * s));
+  const hor = Math.floor((leftTime % (h * m * s)) / (m * s));
+  const min = Math.floor((leftTime % (m * s)) / s);
+  const sec = leftTime % s;
 
   const times = [];
 

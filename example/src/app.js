@@ -13,7 +13,7 @@ const App = () => {
         <h2>normal</h2>
         <FlipCountDown
           option={{
-            leftSecond: 86405,
+            leftSecond: 86400 * 2 + 5,
             format: "dd:hh:mm:ss"
           }}
         />
@@ -47,7 +47,7 @@ const App = () => {
         <h2>style</h2>
         <FlipCountDown
           option={{
-            leftSecond: 86405,
+            leftSecond: 86400 * 2 + 5,
             format: "dd:hh:mm:ss",
             style: {
               color: "#47858b",
@@ -62,8 +62,18 @@ const App = () => {
         <h2>format ： dd天hh时mm分ss秒</h2>
         <FlipCountDown
           option={{
-            leftSecond: 86405,
+            leftSecond: 86400 * 2 + 5,
             format: "dd天hh时mm分ss秒"
+          }}
+        />
+      </div>
+
+      <div className={styles.item}>
+        <h2>format ： HH:mm:ss</h2>
+        <FlipCountDown
+          option={{
+            leftSecond: 86400 * 2 + 5,
+            format: "HH:mm:ss"
           }}
         />
       </div>
