@@ -7,7 +7,9 @@
   "scripts": {
     "start": "webpack-dev-server --open development",
     "build": "webpack --mode production",
-    "compile": "npx father build"
+    "compile": "npx father build",
+    "deploy": "npx gh-pages -d example/dist",
+    "publish-demo": "npm run build && npm run deploy"
   },
   "keywords": [
     "rc-countdown-flip",
@@ -28,6 +30,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "father": "^2.25.0",
+    "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.13.0",
     "react-dom": "^16.11.0",
@@ -38,7 +41,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
-    "react": "^16.11.0",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "react": "^16.11.0"
   }
 }
