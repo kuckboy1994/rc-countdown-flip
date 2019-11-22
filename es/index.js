@@ -28,16 +28,22 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var getTimeText = function getTimeText(format, leftTime) {
-  var day = Math.floor(leftTime / (24 * 60 * 60));
-  var hor = Math.floor(leftTime % (24 * 60 * 60) / (60 * 60));
-  var min = Math.floor(leftTime % (60 * 60) / 60);
-  var sec = leftTime % 60;
+  // console.log(format);
+  var d = 100;
+  var h = /H/.test(format) ? 100 : 24;
+  var m = /M/.test(format) ? 100 : 60;
+  var s = /S/.test(format) ? 100 : 60;
+  var day = Math.floor(leftTime % (d * h * m * s) / (h * m * s));
+  var hor = Math.floor(leftTime % (h * m * s) / (m * s));
+  var min = Math.floor(leftTime % (m * s) / s);
+  var sec = leftTime % s;
   var times = [];
+  var fm = format.toLowerCase();
 
-  for (var i = format.length - 1; i >= 0; i -= 1) {
-    switch (format[i].toLowerCase()) {
+  for (var i = fm.length - 1; i >= 0; i -= 1) {
+    switch (fm[i]) {
       case "d":
-        if ((format[i + 1] || "").toLowerCase() === "d") {
+        if (fm[i + 1] === "d") {
           times.unshift({
             index: i,
             data: Math.floor(day / 10)
@@ -52,7 +58,7 @@ var getTimeText = function getTimeText(format, leftTime) {
         break;
 
       case "h":
-        if ((format[i + 1] || "").toLowerCase() === "h") {
+        if (fm[i + 1] === "h") {
           times.unshift({
             index: i,
             data: Math.floor(hor / 10)
@@ -67,7 +73,7 @@ var getTimeText = function getTimeText(format, leftTime) {
         break;
 
       case "m":
-        if ((format[i + 1] || "").toLowerCase() === "m") {
+        if (fm[i + 1] === "m") {
           times.unshift({
             index: i,
             data: Math.floor(min / 10)
@@ -82,7 +88,7 @@ var getTimeText = function getTimeText(format, leftTime) {
         break;
 
       case "s":
-        if ((format[i + 1] || "").toLowerCase() === "s") {
+        if (fm[i + 1] === "s") {
           times.unshift({
             index: i,
             data: Math.floor(sec / 10)
@@ -99,7 +105,7 @@ var getTimeText = function getTimeText(format, leftTime) {
       default:
         times.unshift({
           index: i,
-          data: format[i]
+          data: fm[i]
         });
     }
   }
@@ -121,6 +127,7 @@ function _default(_ref) {
       _ref$option$style = _ref$option.style,
       style = _ref$option$style === void 0 ? {} : _ref$option$style,
       standard = _ref$option.standard;
+  var prevLeftSecond = (0, _react.useRef)(leftSecond);
 
   var _useState = (0, _react.useState)(getTimeText(format, leftSecond)),
       _useState2 = _slicedToArray(_useState, 2),
@@ -132,20 +139,35 @@ function _default(_ref) {
   (0, _react.useEffect)(function () {
     var id;
 
-    if (leftTime > 0) {
+    var fn = function fn() {};
+
+    if (prevLeftSecond.current !== leftSecond) {
+      prevLeftSecond.current = leftSecond;
+      setLeftTime(function () {
+        return getTimeText(format, leftSecond);
+      });
+    } else if (leftTime > 0) {
       id = setInterval(function () {
         setLeftTime(function (prevData) {
           return getTimeText(format, prevData.leftTime - 1);
         });
       }, 1000);
+
+      fn = function fn() {
+        return clearInterval(id);
+      };
     } else {
-      end();
+      id = setTimeout(function () {
+        end();
+      }, 1000);
+
+      fn = function fn() {
+        return clearTimeout(id);
+      };
     }
 
-    return function () {
-      return clearInterval(id);
-    };
-  }, [leftTime, end, format]);
+    return fn;
+  }, [leftTime, end, format, prevLeftSecond, leftSecond]);
   return _react["default"].createElement("div", {
     className: _styleModule["default"]["count-down"],
     style: {

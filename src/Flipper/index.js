@@ -38,6 +38,9 @@ export default function(props) {
     if (style && style.background) {
       sc.color = style.background;
     }
+    if (style && style.splitWidth) {
+      sc.width = style.splitWidth;
+    }
 
     return (
       <div className={styles.separator} style={sc}>

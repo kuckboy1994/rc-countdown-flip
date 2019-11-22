@@ -26,7 +26,6 @@ const App = () => {
             leftSecond,
             format: "dd:hh:mm:ss",
             end: () => {
-              console.log("true");
               setEnd(true);
             }
           }}
@@ -34,7 +33,6 @@ const App = () => {
         <p>结束了吗？ {end ? "是" : "否"} </p>
         <button
           onClick={() => {
-            console.log(11);
             setLeftSecond(a => a + 1);
             setEnd(false);
           }}
@@ -63,7 +61,10 @@ const App = () => {
         <FlipCountDown
           option={{
             leftSecond: 86400 * 2 + 5,
-            format: "dd天hh时mm分ss秒"
+            format: "dd天hh时mm分ss秒",
+            style: {
+              splitWidth: "100px"
+            }
           }}
         />
       </div>

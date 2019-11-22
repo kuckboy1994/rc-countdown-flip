@@ -59,10 +59,10 @@ function _default(props) {
   (0, _react.useEffect)(function () {
     var id;
 
-    if (typeof now === 'string') {
+    if (typeof now === "string") {
       setSeparator(true);
       setOldVal(now);
-    } else if (typeof prevNowRef.current === 'undefined') {
+    } else if (typeof prevNowRef.current === "undefined") {
       setOldVal(now);
     } else if (now !== prevNowRef.current) {
       setOldVal(prevNowRef.current);
@@ -85,6 +85,10 @@ function _default(props) {
 
     if (style && style.background) {
       _sc.color = style.background;
+    }
+
+    if (style && style.splitWidth) {
+      _sc.width = style.splitWidth;
     }
 
     return _react["default"].createElement("div", {
@@ -111,24 +115,24 @@ function _default(props) {
     className: _styleModule["default"].card,
     style: sc
   }, _react["default"].createElement("div", {
-    className: _styleModule["default"]['b-1'],
+    className: _styleModule["default"]["b-1"],
     style: ba
   }, _react["default"].createElement("div", {
     className: _styleModule["default"].top
   }, newVal)), _react["default"].createElement("div", {
-    className: _styleModule["default"]['b-2'],
+    className: _styleModule["default"]["b-2"],
     style: ba
   }, _react["default"].createElement("div", {
     className: _styleModule["default"].bottom
   }, oldVal)), _react["default"].createElement("div", {
     className: (0, _classnames["default"])((_cn = {}, _defineProperty(_cn, _styleModule["default"].f, true), _defineProperty(_cn, _styleModule["default"].flip, flip), _cn))
   }, _react["default"].createElement("div", {
-    className: _styleModule["default"]['a-1'],
+    className: _styleModule["default"]["a-1"],
     style: ba
   }, _react["default"].createElement("div", {
     className: _styleModule["default"].hou
   }, newVal)), _react["default"].createElement("div", {
-    className: _styleModule["default"]['a-2'],
+    className: _styleModule["default"]["a-2"],
     style: ba
   }, _react["default"].createElement("div", {
     className: _styleModule["default"].qian
